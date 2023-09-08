@@ -1,5 +1,5 @@
 {
-  "name": "tailwindcss-highlight",
+  "name": "vscode-tailwindcss-highlight",
   "displayName": "Tailwind CSS Highlight",
   "version": "2.0.0",
   "main": "out/extension.js",
@@ -7,7 +7,7 @@
   "publisher": "simonhe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ellreka/tailwindcss-highlight.git"
+    "url": "https://github.com/Simon-He95/vscode-tailwindcss-highlight.git"
   },
   "keywords": [
     "tailwindcss",
@@ -129,5 +129,8 @@
   },
   "volta": {
     "node": "18.12.1"
+  },
+  "dependencies": {
+    "bumpp": "^9.2.0"
   }
 }
