@@ -40,7 +40,8 @@ export default function ListItem({ movie }) {
                 height="2"
                 fill="currentColor"
                 className="mx-2 text-slate-300"
-                aria-hidden="true">
+                aria-hidden="true"
+              >
                 <circle cx="1" cy="1" r="1" />
               </svg>
               {movie.genre}
@@ -54,7 +55,8 @@ export default function ListItem({ movie }) {
                 height="2"
                 fill="currentColor"
                 className="mx-2 text-slate-300"
-                aria-hidden="true">
+                aria-hidden="true"
+              >
                 <circle cx="1" cy="1" r="1" />
               </svg>
               {movie.runtime}
