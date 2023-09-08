@@ -1,7 +1,7 @@
 {
   "name": "vscode-tailwindcss-highlight",
-  "displayName": "Tailwind CSS Highlight",
-  "version": "0.0.1",
+  "displayName": "Vscode Tailwind CSS Highlight",
+  "version": "0.0.2",
   "main": "out/extension.js",
   "license": "MIT",
   "publisher": "simonhe",
@@ -19,7 +19,7 @@
     "vscode": "^1.74.0"
   },
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "contributes": {
     "configuration": {
