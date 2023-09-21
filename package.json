@@ -2,7 +2,7 @@
   "publisher": "simonhe",
   "name": "vscode-tailwindcss-highlight",
   "displayName": "Vscode Tailwind CSS Highlight",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "repository": {
     "type": "git",
