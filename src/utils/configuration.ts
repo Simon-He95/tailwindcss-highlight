@@ -1,11 +1,13 @@
-import {
+import type {
   DecorationRenderOptions,
+  WorkspaceConfiguration,
+} from 'vscode'
+import {
   workspace,
-  WorkspaceConfiguration
 } from 'vscode'
 import {
   defaultEnabledUtilities,
-  defaultUtilitiesConfig
+  defaultUtilitiesConfig,
 } from '../defaultConfig'
 
 type UtilitiesConfig = Record<
@@ -47,27 +49,27 @@ export class Configuration {
   }
 
   get configs(): MyConfiguration['configs'] {
-    const customVariantsConfig =
-      this.configuration.get<VariantsConfig>('customVariantsConfig') ?? {}
-    const defaultVariantsColor =
-      this.configuration.get<string>('defaultVariantsColor') ?? ''
-    const customUtilitiesConfig =
-      this.configuration.get<UtilitiesConfig>('customUtilitiesConfig') ?? {}
-    const enabledUtilities =
-      this.configuration.get<string[]>('enabledUtilities') ??
-      defaultEnabledUtilities
+    const customVariantsConfig
+      = this.configuration.get<VariantsConfig>('customVariantsConfig') ?? {}
+    const defaultVariantsColor
+      = this.configuration.get<string>('defaultVariantsColor') ?? ''
+    const customUtilitiesConfig
+      = this.configuration.get<UtilitiesConfig>('customUtilitiesConfig') ?? {}
+    const enabledUtilities
+      = this.configuration.get<string[]>('enabledUtilities')
+      ?? defaultEnabledUtilities
     const config = {
       ...customUtilitiesConfig,
       ...Object.entries(defaultUtilitiesConfig).reduce((acc, [key, value]) => {
         acc[key] = {
           regex: customUtilitiesConfig[key]?.regex ?? value.regex,
           color: customUtilitiesConfig[key]?.color ?? value.color,
-          style: customUtilitiesConfig[key]?.style
+          style: customUtilitiesConfig[key]?.style,
         }
         return acc
-      }, {} as UtilitiesConfig)
+      }, {} as UtilitiesConfig),
     }
-    const customVariants = Object.values(customVariantsConfig).flatMap((i) => i)
+    const customVariants = Object.values(customVariantsConfig).flatMap(i => i)
     return {
       // utilities
       ...Object.entries(config).reduce((acc, [key, value]) => {
@@ -76,7 +78,7 @@ export class Configuration {
           regex: value.regex ?? '',
           options: enabledUtilities.includes(key)
             ? value.style ?? highlightStyle(value.color ?? '')
-            : borderStyle(value.color ?? '')
+            : borderStyle(value.color ?? ''),
         }
         return acc
       }, {} as Configs),
@@ -85,9 +87,9 @@ export class Configuration {
         acc[`variants:${value.join()}`] = {
           enable: true,
           options: {
-            color: key
+            color: key,
           },
-          regex: `(?<=[:\`\'\"\\s])(${value.join('|')}):`
+          regex: `(?<=[:\`\'\"\\s])(${value.join('|')}):`,
         }
         return acc
       }, {} as Configs),
@@ -95,25 +97,29 @@ export class Configuration {
       'variants:other': {
         enable: true,
         options: {
-          color: defaultVariantsColor
+          color: defaultVariantsColor,
         },
         regex: `(?<=[:\`\'\"\\s])(?!(${customVariants.join(
-          '|'
-        )}))([^\`\'\"\\s]+):`
-      }
+          '|',
+        )}))([^\`\'\"\\s]+):`,
+      },
     }
   }
 }
 
-const borderStyle = (color: string) => ({
-  backgroundColor: '',
-  borderStyle: 'dashed',
-  borderWidth: '0 0 1px 0',
-  borderColor: color
-})
+function borderStyle(color: string) {
+  return {
+    backgroundColor: '',
+    borderStyle: 'dashed',
+    borderWidth: '0 0 1px 0',
+    borderColor: color,
+  }
+}
 
-const highlightStyle = (color: string) => ({
-  color: '#333',
-  borderRadius: '0.25rem',
-  backgroundColor: color
-})
+function highlightStyle(color: string) {
+  return {
+    color: '#333',
+    borderRadius: '0.25rem',
+    backgroundColor: color,
+  }
+}

@@ -4,11 +4,11 @@ import { filetext } from './filetext'
 
 const config = defaultUtilitiesConfig
 
-const testUtility = (regex: string): string[] => {
+function testUtility(regex: string): string[] {
   const classNames = getClassNames(filetext)
   return classNames.flatMap((className) => {
     return getUtility(className.value, new RegExp(regex, 'g')).map(
-      (i) => i.value
+      i => i.value,
     )
   })
 }
@@ -22,12 +22,12 @@ describe('getClassNames', () => {
     expect(classNames).toEqual([
       {
         start: 18,
-        value: '"flex items-center p-10"'
+        value: '"flex items-center p-10"',
       },
       {
         start: 84,
-        value: '"flex items-center p-10"'
-      }
+        value: '"flex items-center p-10"',
+      },
     ])
   })
 
@@ -42,20 +42,20 @@ describe('getClassNames', () => {
       {
         start: 24,
         value:
-          "'flex', 'items-center', 'p-10', x === 100 ? 'bg-blue-500' : 'bg-red-500'"
+          '\'flex\', \'items-center\', \'p-10\', x === 100 ? \'bg-blue-500\' : \'bg-red-500\'',
       },
       {
         start: 125,
-        value: '"flex items-center p-10"'
+        value: '"flex items-center p-10"',
       },
       {
         start: 180,
-        value: '"flex items-center p-10"'
+        value: '"flex items-center p-10"',
       },
       {
         start: 246,
-        value: '"flex" : clsx("flex items-center p-10"'
-      }
+        value: '"flex" : clsx("flex items-center p-10"',
+      },
     ])
   })
 
@@ -68,12 +68,12 @@ describe('getClassNames', () => {
       {
         start: 30,
         value:
-          "'flex', 'items-center', 'p-10', true ? 'bg-blue-500' : 'bg-red-500'"
+          '\'flex\', \'items-center\', \'p-10\', true ? \'bg-blue-500\' : \'bg-red-500\'',
       },
       {
         start: 132,
-        value: '"flex items-center p-10"'
-      }
+        value: '"flex items-center p-10"',
+      },
     ])
   })
 
@@ -108,7 +108,7 @@ describe('getUtility', () => {
       'px-10',
       'py-10',
       '-p-10',
-      'p-[10px]'
+      'p-[10px]',
     ]
     const regex = config.padding.regex
     const utility = testUtility(regex)
@@ -124,7 +124,7 @@ describe('getUtility', () => {
       'mr-10',
       'mx-10',
       'my-10',
-      '-m-10'
+      '-m-10',
     ]
     const regex = config.margin.regex
     const utility = testUtility(regex)
@@ -146,7 +146,7 @@ describe('getUtility', () => {
       'border-none',
       'border-gray-100',
       'border-opacity-0',
-      'border-solid'
+      'border-solid',
     ]
     const regex = config.border.regex
     const utility = testUtility(regex)
@@ -166,7 +166,7 @@ describe('getUtility', () => {
       'divide-y-10',
       'divide-x',
       'divide-y',
-      'divide-gray-100'
+      'divide-gray-100',
     ]
     const regex = config.divide.regex
     const utility = testUtility(regex)
@@ -189,7 +189,7 @@ describe('getUtility', () => {
       'w-full',
       'min-w-100',
       'max-w-100',
-      'max-w-screen-sm'
+      'max-w-screen-sm',
     ]
     const regex = config.width.regex
     const utility = testUtility(regex)
@@ -204,7 +204,7 @@ describe('getUtility', () => {
       'h-1/2',
       'h-full',
       'min-h-100',
-      'max-h-100'
+      'max-h-100',
     ]
     const regex = config.height.regex
     const utility = testUtility(regex)
@@ -217,7 +217,7 @@ describe('getUtility', () => {
       'flex-1',
       'flex-auto',
       'flex-grow-0',
-      'flex-shrink-0'
+      'flex-shrink-0',
     ]
     const regex = config.flex.regex
     const utility = testUtility(regex)
@@ -280,7 +280,7 @@ describe('getUtility', () => {
       'gap-y-10',
       'gap-0.5',
       'gap-x-0.5',
-      'gap-px'
+      'gap-px',
     ]
     const regex = config.gap.regex
     const utility = testUtility(regex)
@@ -294,7 +294,7 @@ describe('getUtility', () => {
       'justify-center',
       'justify-between',
       'justify-around',
-      'justify-evenly'
+      'justify-evenly',
     ]
     const regex = config.justifyContent.regex
     const utility = testUtility(regex)
@@ -306,7 +306,7 @@ describe('getUtility', () => {
       'justify-items-start',
       'justify-items-end',
       'justify-items-center',
-      'justify-items-stretch'
+      'justify-items-stretch',
     ]
     const regex = config.justifyItems.regex
     const utility = testUtility(regex)
@@ -319,7 +319,7 @@ describe('getUtility', () => {
       'justify-self-start',
       'justify-self-end',
       'justify-self-center',
-      'justify-self-stretch'
+      'justify-self-stretch',
     ]
     const regex = config.justifySelf.regex
     const utility = testUtility(regex)
@@ -333,7 +333,7 @@ describe('getUtility', () => {
       'content-end',
       'content-between',
       'content-around',
-      'content-evenly'
+      'content-evenly',
     ]
     const regex = config.alignContent.regex
     const utility = testUtility(regex)
@@ -346,7 +346,7 @@ describe('getUtility', () => {
       'items-end',
       'items-center',
       'items-baseline',
-      'items-stretch'
+      'items-stretch',
     ]
     const regex = config.alignItems.regex
     const utility = testUtility(regex)
@@ -359,7 +359,7 @@ describe('getUtility', () => {
       'self-start',
       'self-end',
       'self-center',
-      'self-stretch'
+      'self-stretch',
     ]
     const regex = config.alignSelf.regex
     const utility = testUtility(regex)
@@ -374,7 +374,7 @@ describe('getUtility', () => {
       'place-content-between',
       'place-content-around',
       'place-content-evenly',
-      'place-content-stretch'
+      'place-content-stretch',
     ]
     const regex = config.placeContent.regex
     const utility = testUtility(regex)
@@ -386,7 +386,7 @@ describe('getUtility', () => {
       'place-items-start',
       'place-items-end',
       'place-items-center',
-      'place-items-stretch'
+      'place-items-stretch',
     ]
     const regex = config.placeItems.regex
     const utility = testUtility(regex)
@@ -399,7 +399,7 @@ describe('getUtility', () => {
       'place-self-start',
       'place-self-end',
       'place-self-center',
-      'place-self-stretch'
+      'place-self-stretch',
     ]
     const regex = config.placeSelf.regex
     const utility = testUtility(regex)
@@ -489,7 +489,7 @@ describe('getUtility', () => {
       'translate-x-0.5',
       'translate-y-10',
       'translate-y-1/2',
-      '-translate-x-full'
+      '-translate-x-full',
     ]
     const regex = config.translate.regex
     const utility = testUtility(regex)
@@ -543,7 +543,7 @@ describe('getUtility', () => {
       'whitespace-normal',
       'whitespace-pre-wrap',
       'whitespace-pre-line',
-      'whitespace-pre'
+      'whitespace-pre',
     ]
     const regex = config.whitespace.regex
     const utility = testUtility(regex)
@@ -594,7 +594,7 @@ describe('getUtility', () => {
       'bg-left-bottom',
       'bg-no-repeat',
       'bg-contain',
-      'bg-gradient-to-t'
+      'bg-gradient-to-t',
     ]
     const regex = config.background.regex
     const utility = testUtility(regex)
@@ -606,7 +606,7 @@ describe('getUtility', () => {
       'from-transparent',
       'from-gray-100',
       'via-gray-100',
-      'to-gray-100'
+      'to-gray-100',
     ]
     const regex = config.gradientColorStops.regex
     const utility = testUtility(regex)
@@ -628,7 +628,7 @@ describe('getUtility', () => {
       '-inset-y-1',
       'right-3.5',
       'bottom-1/2',
-      'bottom-[calc(100%+0.6rem)]'
+      'bottom-[calc(100%+0.6rem)]',
     ]
     const regex = config.inset.regex
     const utility = testUtility(regex)

@@ -1,3 +1,9 @@
+<script>
+export default {
+  props: ['movie'],
+}
+</script>
+
 <template>
   <article class="flex items-start space-x-6 p-6">
     <img
@@ -6,7 +12,7 @@
       width="60"
       height="88"
       class="flex-none rounded-md bg-slate-100"
-    />
+    >
     <div class="relative min-w-0 flex-auto">
       <h2 class="truncate pr-20 font-semibold text-slate-900">
         {{ movie.title }}
@@ -24,17 +30,23 @@
           <dd>{{ movie.starRating }}</dd>
         </div>
         <div>
-          <dt class="sr-only">Rating</dt>
+          <dt class="sr-only">
+            Rating
+          </dt>
           <dd class="rounded px-1.5 ring-1 ring-slate-200">
             {{ movie.rating }}
           </dd>
         </div>
         <div class="ml-2">
-          <dt class="sr-only">Year</dt>
+          <dt class="sr-only">
+            Year
+          </dt>
           <dd>{{ movie.year }}</dd>
         </div>
         <div>
-          <dt class="sr-only">Genre</dt>
+          <dt class="sr-only">
+            Genre
+          </dt>
           <dd class="flex items-center">
             <svg
               width="2"
@@ -49,7 +61,9 @@
           </dd>
         </div>
         <div>
-          <dt class="sr-only">Runtime</dt>
+          <dt class="sr-only">
+            Runtime
+          </dt>
           <dd class="flex items-center">
             <svg
               width="2"
@@ -64,16 +78,14 @@
           </dd>
         </div>
         <div class="mt-2 w-full flex-none font-normal">
-          <dt class="sr-only">Cast</dt>
-          <dd class="text-slate-400">{{ movie.cast }}</dd>
+          <dt class="sr-only">
+            Cast
+          </dt>
+          <dd class="text-slate-400">
+            {{ movie.cast }}
+          </dd>
         </div>
       </dl>
     </div>
   </article>
 </template>
-
-<script>
-export default {
-  props: ['movie']
-}
-</script>

@@ -76,7 +76,7 @@ import { Component } from '@angular/core'
         </dl>
       </div>
     </article>
-  `
+  `,
 })
 export class ListItemComponent {
   @Input() movie!: {

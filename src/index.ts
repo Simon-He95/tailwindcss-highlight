@@ -1,9 +1,13 @@
-import { ExtensionContext, window, workspace } from 'vscode'
+import type { ExtensionContext } from 'vscode'
+import { window, workspace } from 'vscode'
 
 import { Configuration } from './utils/configuration'
 import { Decoration } from './utils/decoration'
+import { hasTailwindConfig } from './utils/utils'
 
 export async function activate(context: ExtensionContext): Promise<void> {
+  if (!await hasTailwindConfig())
+    return
   const configuration = new Configuration()
   const decoration = new Decoration(configuration)
   decoration.update()
@@ -12,14 +16,14 @@ export async function activate(context: ExtensionContext): Promise<void> {
       decoration.update()
     },
     null,
-    context.subscriptions
+    context.subscriptions,
   )
   workspace.onDidChangeTextDocument(
     (event) => {
       decoration.update()
     },
     null,
-    context.subscriptions
+    context.subscriptions,
   )
   workspace.onDidChangeConfiguration(
     (event) => {
@@ -27,7 +31,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       decoration.update(configuration)
     },
     null,
-    context.subscriptions
+    context.subscriptions,
   )
 }
 

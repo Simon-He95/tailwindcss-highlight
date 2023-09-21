@@ -1,12 +1,14 @@
 {
-  "include": ["src"],
-  "extends": "@ellreka/configs/tsconfig",
   "compilerOptions": {
-    "outDir": "out",
-    "module": "commonJs",
-    "target": "ES2017",
-    "lib": ["ES2020", "DOM"],
-    "sourceMap": false,
-    "declaration": false
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   }
 }

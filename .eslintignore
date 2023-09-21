@@ -1,1 +1,8 @@
+node_modules
+dist
+pnpm-lock.yaml
+!.*
+.history
+*.md
+.eslintcache
 sample

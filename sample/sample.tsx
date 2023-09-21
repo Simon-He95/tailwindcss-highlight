@@ -1,8 +1,8 @@
 // @ts-nocheck
 
 import type { FC } from 'react'
-import { ButtonProps } from './Button.types'
 import clsx from 'clsx'
+import type { ButtonProps } from './Button.types'
 
 export const Button: FC<ButtonProps> = (props) => {
   const btn = clsx('bg-blue-100')
@@ -13,10 +13,10 @@ export const Button: FC<ButtonProps> = (props) => {
         {...props}
         className={clsx(
           'rounded-full border border-gray-400 bg-sky-200 py-1 px-3 text-sm font-medium text-gray-800 hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 lg:py-2 lg:px-4 lg:text-base',
-          disabled && 'bg-sky-200/70 opacity-70'
+          disabled && 'bg-sky-200/70 opacity-70',
         )}
         style={{
-          transform: 'translate3d(0, 0, 0)'
+          transform: 'translate3d(0, 0, 0)',
         }}
       >
         {props.children}

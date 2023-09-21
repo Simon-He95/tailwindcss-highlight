@@ -1,12 +1,14 @@
-import {
+import type {
   DecorationOptions,
-  Range,
   TextEditor,
   TextEditorDecorationType,
-  window
+} from 'vscode'
+import {
+  Range,
+  window,
 } from 'vscode'
 
-import { MyConfiguration } from './configuration'
+import type { MyConfiguration } from './configuration'
 import { getClassNames, getUtility } from './utils'
 
 export class Decoration {
@@ -17,27 +19,27 @@ export class Decoration {
     this.timer = undefined
     this.configuration = configuration
     this.decorators = Object.entries(configuration.configs)
-      .filter((config) => config[1].enable)
+      .filter(config => config[1].enable)
       .sort((a, b) => {
-        console.log(a[0])
         if (
-          a[0].startsWith('variants:') &&
-          !['variants:other', 'variants:responsive'].includes(a[0])
-        ) {
+          a[0].startsWith('variants:')
+          && !['variants:other', 'variants:responsive'].includes(a[0])
+        )
           return -1
-        }
+
         return 0
       })
       .map((config) => {
         return {
           regex: config[1].regex,
-          decorator: window.createTextEditorDecorationType(config[1].options)
+          decorator: window.createTextEditorDecorationType(config[1].options),
         }
       })
   }
 
   private decorate(editor: TextEditor): void {
-    if (editor == null) return
+    if (editor == null)
+      return
     const document = editor.document
     const text = document.getText()
     const classNames = getClassNames(text)
@@ -61,18 +63,20 @@ export class Decoration {
     if (configuration != null) {
       this.configuration = configuration
       this.decorators = Object.entries(configuration.configs)
-        .filter((config) => config[1].enable)
+        .filter(config => config[1].enable)
         .map((config) => {
           return {
             regex: config[1].regex,
-            decorator: window.createTextEditorDecorationType(config[1].options)
+            decorator: window.createTextEditorDecorationType(config[1].options),
           }
         })
     }
     const editor = window.activeTextEditor
-    if (editor == null) return
+    if (editor == null)
+      return
     const languageId = editor.document.languageId
-    if (!this.configuration.languages.includes(languageId)) return
+    if (!this.configuration.languages.includes(languageId))
+      return
     if (this.timer != null) {
       clearTimeout(this.timer)
       this.timer = undefined
