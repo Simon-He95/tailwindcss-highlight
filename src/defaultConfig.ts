@@ -250,4 +250,64 @@ export const defaultUtilitiesConfig = {
     regex: '(?<=[:`\'"\\s])!?shrink(|-0)',
     color: 'rgba(149, 25, 59, 1)',
   },
+  pointer: {
+    regex:
+      '(?<=[:`\'"\\s])!?pointer-events-(none|auto)',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  blur: {
+    regex:
+      '(?<=[:`\'"\\s])!?blur(-(none|sm|md|lg|xl|2xl|3xl))?',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  brightness: {
+    regex:
+      '(?<=[:`\'"\\s])!?brightness-[0-9]+',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  contrast: {
+    regex:
+      '(?<=[:`\'"\\s])!?contrast-[0-9]+',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  grayscale: {
+    regex:
+      '(?<=[:`\'"\\s])!?grayscale(-0)?',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  invert: {
+    regex:
+      '(?<=[:`\'"\\s])!?invert(-0)?',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  hueRotate: {
+    regex:
+      '(?<=[:`\'"\\s])!?hue-rotate-[0-9]+',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  sepia: {
+    regex:
+      '(?<=[:`\'"\\s])!?sepia-[0-9]+',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  saturate: {
+    regex:
+      '(?<=[:`\'"\\s])!?saturate-[0-9]+',
+    color: 'rgba(171, 169, 169, 1)',
+  },
+  opacity: {
+    regex:
+      '(?<=[:`\'"\\s])!?opacity(-[0-9]+)?',
+    color: 'rgba(171, 16, 1, 1)',
+  },
+  select: {
+    regex:
+      '(?<=[:`\'"\\s])!?select-(none|text|all|auto)',
+    color: 'rgba(171, 16, 100, 1)',
+  },
+  willChange: {
+    regex:
+      '(?<=[:`\'"\\s])!?will-change-(scroll|contents|auto|transform)',
+    color: 'rgba(17, 16, 100, 1)',
+  },
 }
