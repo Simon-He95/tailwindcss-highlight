@@ -14,7 +14,7 @@
     "highlight"
   ],
   "main": "dist/index.js",
-  "icon": "assets/icon.png",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.77.0"
   },
