@@ -11,28 +11,29 @@ export async function activate(context: ExtensionContext): Promise<void> {
   const configuration = new Configuration()
   const decoration = new Decoration(configuration)
   decoration.update()
-  window.onDidChangeActiveTextEditor(
+
+  context.subscriptions.push(window.onDidChangeActiveTextEditor(
     (editor) => {
       decoration.update()
     },
     null,
     context.subscriptions,
-  )
-  workspace.onDidChangeTextDocument(
+  ))
+  context.subscriptions.push(workspace.onDidChangeTextDocument(
     (event) => {
       decoration.update()
     },
     null,
     context.subscriptions,
-  )
-  workspace.onDidChangeConfiguration(
+  ))
+  context.subscriptions.push(workspace.onDidChangeConfiguration(
     (event) => {
       const configuration = new Configuration()
       decoration.update(configuration)
     },
     null,
     context.subscriptions,
-  )
+  ))
 }
 
 export async function deactivate(): Promise<void> {

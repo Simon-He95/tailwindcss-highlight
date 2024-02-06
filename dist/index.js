@@ -760,16 +760,20 @@ var Decoration = class {
     this.decorators.forEach((decorator) => {
       const regex = new RegExp(decorator.regex, "g");
       const chars = [];
-      classNames.forEach((className) => {
-        const utilities = getUtility(className.value, regex);
-        utilities.forEach((utility) => {
-          const start = document.positionAt(className.start + utility.start);
-          const end = document.positionAt(className.start + utility.end);
-          const range = new import_vscode3.Range(start, end);
-          chars.push({ range });
-        });
+      if (!classNames.length) {
         editor.setDecorations(decorator.decorator, chars);
-      });
+      } else {
+        classNames.forEach((className) => {
+          const utilities = getUtility(className.value, regex);
+          utilities.forEach((utility) => {
+            const start = document.positionAt(className.start + utility.start);
+            const end = document.positionAt(className.start + utility.end);
+            const range = new import_vscode3.Range(start, end);
+            chars.push({ range });
+          });
+          editor.setDecorations(decorator.decorator, chars);
+        });
+      }
     });
   }
   update(configuration) {
@@ -810,28 +814,28 @@ async function activate(context) {
   const configuration = new Configuration();
   const decoration = new Decoration(configuration);
   decoration.update();
-  import_vscode4.window.onDidChangeActiveTextEditor(
+  context.subscriptions.push(import_vscode4.window.onDidChangeActiveTextEditor(
     (editor) => {
       decoration.update();
     },
     null,
     context.subscriptions
-  );
-  import_vscode4.workspace.onDidChangeTextDocument(
+  ));
+  context.subscriptions.push(import_vscode4.workspace.onDidChangeTextDocument(
     (event) => {
       decoration.update();
     },
     null,
     context.subscriptions
-  );
-  import_vscode4.workspace.onDidChangeConfiguration(
+  ));
+  context.subscriptions.push(import_vscode4.workspace.onDidChangeConfiguration(
     (event) => {
       const configuration2 = new Configuration();
       decoration.update(configuration2);
     },
     null,
     context.subscriptions
-  );
+  ));
 }
 async function deactivate() {
   const configuration = new Configuration();
