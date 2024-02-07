@@ -46,19 +46,17 @@ export class Decoration {
     this.decorators.forEach((decorator) => {
       const regex = new RegExp(decorator.regex, 'g')
       const chars: DecorationOptions[] = []
-      if (!classNames.length) { editor.setDecorations(decorator.decorator, chars) }
-      else {
-        classNames.forEach((className) => {
-          const utilities = getUtility(className.value, regex)
-          utilities.forEach((utility) => {
-            const start = document.positionAt(className.start + utility.start)
-            const end = document.positionAt(className.start + utility.end)
-            const range = new Range(start, end)
-            chars.push({ range })
-          })
-          editor.setDecorations(decorator.decorator, chars)
+      editor.setDecorations(decorator.decorator, chars)
+      classNames.forEach((className) => {
+        const utilities = getUtility(className.value, regex)
+        utilities.forEach((utility) => {
+          const start = document.positionAt(className.start + utility.start)
+          const end = document.positionAt(className.start + utility.end)
+          const range = new Range(start, end)
+          chars.push({ range })
         })
-      }
+        editor.setDecorations(decorator.decorator, chars)
+      })
     })
   }
 
