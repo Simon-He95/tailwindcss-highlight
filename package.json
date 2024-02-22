@@ -51,12 +51,13 @@
         },
         "tailwindcss-highlight.customVariantsConfig": {
           "default": {
-            "#08D9D6": [
+            "#F472B6": [
               "sm",
               "md",
               "lg",
               "xl",
-              "2xl"
+              "2xl",
+              "3xl"
             ]
           },
           "title": "CustomVariantsConfig",
