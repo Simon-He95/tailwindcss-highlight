@@ -310,4 +310,9 @@ export const defaultUtilitiesConfig = {
       '(?<=[:`\'"\\s])!?will-change-(scroll|contents|auto|transform)',
     color: 'rgba(17, 16, 100, 1)',
   },
+  lineClamp: {
+    regex:
+      '(?<=[:`\'"\\s])!?line-clamp-(none|[1-6])',
+    color: 'rgb(253 230 138)',
+  },
 }
